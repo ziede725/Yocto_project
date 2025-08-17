@@ -30,6 +30,8 @@ RUN groupadd -g ${GID} ${USERNAME} && \
     echo "${USERNAME} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/${USERNAME} && \
     chmod 440 /etc/sudoers.d/${USERNAME}
 
+RUN pip3 install kas
+
 # Switch to non-root user
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}
