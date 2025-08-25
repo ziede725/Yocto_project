@@ -1,2 +1,4 @@
 build/
-layers/
+layers/poky
+layers/meta-raspberrypi
+.vscode
