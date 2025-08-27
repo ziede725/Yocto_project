@@ -2,7 +2,7 @@
 
 set -e
 
-IMAGE_NAME="my-yocto.2"
+IMAGE_NAME="my-yocto.3"
 YOCTO_DIR="/home/zied/techleefYocto_Project/Yocto_project"        
 KAS_CONFIG="project.yml"  
 YOCTO_DL_DIR="/home/zied/yocto/build/downloads"
@@ -15,8 +15,7 @@ else
     echo "Docker image '$IMAGE_NAME' already exists."
 fi
 
-CONTAINER_NAME="competent_kalam"
-
+CONTAINER_NAME="yocto-buildenv"
 # If container exists, start it
 if [ "$(docker ps -a -q -f name=$CONTAINER_NAME)" ]; then
     echo "Starting existing container..."
@@ -24,6 +23,7 @@ if [ "$(docker ps -a -q -f name=$CONTAINER_NAME)" ]; then
 else
 # Run container
 docker run -it \
+    --name $CONTAINER_NAME \
     -v "$YOCTO_DIR":/work \
     -v "$YOCTO_DL_DIR":/work/build/downloads \
     -v "$YOCTO_CACHE_DIR":/work/build/sstate-cache \
